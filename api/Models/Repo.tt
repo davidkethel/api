@@ -1,0 +1,25 @@
+﻿<#@ template debug="true" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Data.dll" #>
+<#@ Assembly Name="System.Data.Linq.dll" #>
+<#@ Import Namespace="System" #>
+<#@ Import Namespace="System.Data" #>
+<#@ Import Namespace="System.Data.Linq" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="api.Models.LinqToSql" #>
+
+using System;
+using api.Models.LinqToSql;
+
+
+
+<#
+	var dataContext = new DataDataContext();
+
+
+
+#>
