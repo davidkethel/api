@@ -1,0 +1,20 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".txt" #>
+<#@ assembly Name="EnvDTE" #>
+<#@ Import Namespace="EnvDTE" #>
+<#@ Import Namespace="System.IO" #>
+
+<#+ 
+
+	public void ProcessContent(string outputFileName, string content)
+	{
+		string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
+		string outputFilePath = Path.Combine(templateDirectory, outputFileName);
+		File.WriteAllText(outputFilePath, content);
+
+		IServiceProvider hostServiceProvider = (IServiceProvider)Host;
+		EnvDTE.DTE dte = (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+		ProjectItem ContainingProjectItem = dte.Solution.FindProjectItem(Host.TemplateFile);
+		ContainingProjectItem.ProjectItems.AddFromFile(outputFilePath);
+	}
+#>
