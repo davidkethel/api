@@ -1,13 +1,45 @@
 ﻿<#@ include file="ProcessContent.tt" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+
 <#
-	for(int i = 0; i < 10; i++)
+	var doc = new XmlDocument();
+	var fileName = "LinqToSql\\Data.DBML";
+	var dataContextClassName = Path.GetFileNameWithoutExtension(fileName) + "DataContext"; 
+	var content = File.ReadAllText(this.Host.ResolvePath(fileName));
+	doc.LoadXml(content);
+	var nodes = doc.DocumentElement.ChildNodes.OfType<XmlElement>().Where(e => e.Name == "Table").ToList();
+#>
+
+	<#
+	nodes.ForEach(n => 
 	{
-#>
-write me <#= i #>
-<#
-	ProcessContent("File" + i.ToString() + ".txt", this.GenerationEnvironment.ToString());
-	this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
-	}
-#>
+		var types = n.ChildNodes.OfType<XmlElement>().Where(e => e.Name == "Type").ToList();
+		types.ForEach(t =>
+		{
+	#>
 
+		public class <#= t.Attributes["Name"].Value #> {}
 
+	
+	
+		<#
+		ProcessContent(t.Attributes["Name"].Value + "Repo" +  ".cs", this.GenerationEnvironment.ToString());
+		this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+		#>
+
+	
+	
+		<#
+		});
+		#>
+
+	<#
+	});
+	#>

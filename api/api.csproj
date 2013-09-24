@@ -112,10 +112,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\JobRepo.cs">
+      <DependentUpon>Repo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LinqToSql\Data.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PersonRepo.cs">
+      <DependentUpon>Repo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProcessContent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProcessContent.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repo.cs">
       <AutoGen>True</AutoGen>
@@ -153,10 +164,15 @@
     </Content>
     <None Include="Models\LinqToSql\Data.dbml.layout">
       <DependentUpon>Data.dbml</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="Models\Repo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Repo.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ProcessContent.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ProcessContent.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
