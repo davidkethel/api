@@ -5,6 +5,6 @@ namespace api.Models
 {
     interface IPersonRepo
     {
-        public Table<Person> getAll();
+         Table<Person> getAll();
     }
 }
