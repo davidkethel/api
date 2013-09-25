@@ -133,6 +133,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Repo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RepoDef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

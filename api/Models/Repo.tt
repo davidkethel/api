@@ -25,17 +25,15 @@
 		{
 	#>
 
-		public class <#= t.Attributes["Name"].Value #> {}
+			public class temp<#= t.Attributes["Name"].Value #> {}
 
 	
 	
-		<#
-		ProcessContent(t.Attributes["Name"].Value + "Repo" +  ".cs", this.GenerationEnvironment.ToString());
-		this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
-		#>
+			<#
+			ProcessContent(t.Attributes["Name"].Value + "RRepo" +  ".cs", this.GenerationEnvironment.ToString());
+			this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+			#>
 
-	
-	
 		<#
 		});
 		#>
