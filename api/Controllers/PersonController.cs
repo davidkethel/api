@@ -5,11 +5,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using api.Models.LinqToSql;
+using api.Models;
 
 namespace api.Controllers
 {
     public class PersonController : ApiController
     {
+
+        IPersonRepo personRepo;
+
+
+        public PersonController()
+        {
+            personRepo = new PersonRepo();
+        }
+
+        public PersonController(IPersonRepo perRepo)
+        {
+            personRepo = perRepo;
+        }
+
         // GET api/person
         public IEnumerable<Person> Get()
         {

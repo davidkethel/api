@@ -3,7 +3,7 @@ using System.Data.Linq;
 
 namespace api.Models
 {
-    interface IPersonRepo
+   public interface IPersonRepo
     {
          Table<Person> getAll();
     }
