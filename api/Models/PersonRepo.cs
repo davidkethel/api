@@ -1,5 +1,5 @@
 ﻿using api.Models.LinqToSql;
-using System.Data.Linq;
+using System.Collections.Generic;
 
 namespace api.Models
 {
@@ -7,7 +7,7 @@ namespace api.Models
     {
         private DataDataContext DB = new DataDataContext();
 
-        public Table<Person> getAll()
+        public IEnumerable<Person> getAll()
         {
             return DB.Persons;
         }

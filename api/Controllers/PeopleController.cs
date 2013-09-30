@@ -9,18 +9,18 @@ using api.Models;
 
 namespace api.Controllers
 {
-    public class PersonController : ApiController
+    public class PeopleController : ApiController
     {
 
         IPersonRepo personRepo;
 
 
-        public PersonController()
+        public PeopleController()
         {
             personRepo = new PersonRepo();
         }
 
-        public PersonController(IPersonRepo perRepo)
+        public PeopleController(IPersonRepo perRepo)
         {
             personRepo = perRepo;
         }
@@ -28,12 +28,16 @@ namespace api.Controllers
         // GET api/person
         public IEnumerable<Person> Get()
         {
-            var per = new Person();
-            per.FirstName = "Dave";
-            per.LastName = "Bill";
-            per.DOB = new DateTime(11, 11, 11, 11, 11, 11);
+            var allPeople = personRepo.getAll();
 
-            return new List<Person> { per };
+            if (allPeople  != null)
+            {
+                return personRepo.getAll();
+            }
+            else
+            {
+                return new List<Person>();
+            }
         }
 
         //// GET api/person/5

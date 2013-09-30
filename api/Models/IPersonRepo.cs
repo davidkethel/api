@@ -1,10 +1,10 @@
 ﻿using api.Models.LinqToSql;
-using System.Data.Linq;
+using System.Collections.Generic;
 
 namespace api.Models
 {
    public interface IPersonRepo
     {
-         Table<Person> getAll();
+       IEnumerable<Person> getAll();
     }
 }
