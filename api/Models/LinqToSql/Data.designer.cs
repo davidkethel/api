@@ -39,7 +39,7 @@ namespace api.Models.LinqToSql
     #endregion
 		
 		public DataDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["apiConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["apiConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -323,7 +323,7 @@ namespace api.Models.LinqToSql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Email
 		{
 			get
