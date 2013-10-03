@@ -117,11 +117,15 @@
     <Compile Include="Models\JobRRepo.cs">
       <DependentUpon>Repo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LinqToSql\Data.cs">
+      <DependentUpon>Data.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\LinqToSql\Data.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonRRepo.cs">
       <DependentUpon>Repo.tt</DependentUpon>
     </Compile>

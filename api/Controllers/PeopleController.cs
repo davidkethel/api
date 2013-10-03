@@ -26,7 +26,7 @@ namespace api.Controllers
         }
 
         // GET api/person
-        public IEnumerable<Person> Get()
+        public IEnumerable<Person> Get(int? id = 0)
         {
             var allPeople = personRepo.getAll();
 
