@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace api.Models
 {
-   public interface IPersonRepo
+   public interface IPeopleRepo
     {
        IEnumerable<Person> getAll();
     }

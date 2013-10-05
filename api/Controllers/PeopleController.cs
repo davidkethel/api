@@ -12,15 +12,15 @@ namespace api.Controllers
     public class PeopleController : ApiController
     {
 
-        IPersonRepo personRepo;
+        IPeopleRepo personRepo;
 
 
         public PeopleController()
         {
-            personRepo = new PersonRepo();
+            personRepo = new PeopleRepo();
         }
 
-        public PeopleController(IPersonRepo perRepo)
+        public PeopleController(IPeopleRepo perRepo)
         {
             personRepo = perRepo;
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace api.Models
 {
-    public class PersonRepo : IPersonRepo
+    public class PeopleRepo : IPeopleRepo
     {
         private DataDataContext DB = new DataDataContext();
 
