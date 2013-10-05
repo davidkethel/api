@@ -24,7 +24,17 @@ namespace api.Controllers
         // GET api/jobs
         public IEnumerable<Job> Get()
         {
-            return new List<Job>();
+            var allJobs = JobsRepo.getAll();
+            if (allJobs != null)
+            {
+                return allJobs;
+            }
+            else
+            {
+               return new List<Job>();
+            }
+            
+
         }
 
         //// GET api/jobs/5

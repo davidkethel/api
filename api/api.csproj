@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Models\IJobsRepo.cs" />
     <Compile Include="Models\IPeopleRepo.cs" />
+    <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobRRepo.cs">
       <DependentUpon>Repo.tt</DependentUpon>
     </Compile>
