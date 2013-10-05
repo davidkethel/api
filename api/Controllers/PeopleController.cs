@@ -26,13 +26,13 @@ namespace api.Controllers
         }
 
         // GET api/person
-        public IEnumerable<Person> Get(int? id = 0)
+        public IEnumerable<Person> Get(int? olderThan = 0)
         {
             var allPeople = personRepo.getAll();
 
-            if (allPeople  != null)
+            if (allPeople != null)
             {
-                return personRepo.getAll();
+                return personRepo.getAll().Where(per => per.DOB < DateTime.Now.AddYears(-olderThan.Value));
             }
             else
             {
