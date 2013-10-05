@@ -114,6 +114,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IJobRepo.cs" />
     <Compile Include="Models\IPersonRepo.cs" />
     <Compile Include="Models\JobRRepo.cs">
       <DependentUpon>Repo.tt</DependentUpon>
@@ -126,6 +127,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\JobRepo.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonRRepo.cs">
       <DependentUpon>Repo.tt</DependentUpon>
