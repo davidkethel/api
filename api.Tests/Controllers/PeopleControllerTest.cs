@@ -12,6 +12,8 @@ namespace api.Tests.Controllers
     [TestClass]
     public class PeopleControllerTest
     {
+
+        #region Basic
         [TestMethod]
         public void TestMethod_EmptyRepo()
         {
@@ -165,6 +167,9 @@ namespace api.Tests.Controllers
             CollectionAssert.AreEquivalent(persons, peopleList);
         }
 
+        #endregion
+
+        #region older than
         [TestMethod]
         public void TestMethod_3Person_AgeAbove0()
         {
@@ -515,7 +520,6 @@ namespace api.Tests.Controllers
             CollectionAssert.AreEquivalent(persons, returnList);
         }
 
-
         [TestMethod]
         public void TestMethod_3Person_AgeAbove40_UnderBy1Sec()
         {
@@ -571,5 +575,8 @@ namespace api.Tests.Controllers
             // Assert
             CollectionAssert.AreEquivalent(persons, returnList);
         }
+
+        #endregion
+
     }
 }
