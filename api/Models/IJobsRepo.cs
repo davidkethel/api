@@ -3,7 +3,7 @@ using api.Models.LinqToSql;
 
 namespace api.Models
 {
-    public interface IJobRepo
+    public interface IJobsRepo
     {
         IEnumerable<Job> getAll();
     }

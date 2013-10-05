@@ -2,7 +2,7 @@
 
 namespace api.Models.LinqToSql
 {
-    public class JobRepo : IJobRepo
+    public class JobsRepo : IJobsRepo
     {
         private DataDataContext DB = new DataDataContext();
         

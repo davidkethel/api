@@ -15,19 +15,19 @@ namespace api.Tests.Controllers
     public class JobsContollerTest
     {
 
-        //[TestMethod]
-        //public void TestMethod_EmptyRepo()
-        //{
-        //    // Arrange
-        //    var stubJobsRepo = MockRepository.GenerateStub<IJobRepo>();
+        [TestMethod]
+        public void TestMethod_EmptyRepo()
+        {
+            // Arrange
+            var stubJobsRepo = MockRepository.GenerateStub<IJobsRepo>();
 
-        //    var jobsController = new JobsController(stubJobsRepo);
+            var jobsController = new JobsController(stubJobsRepo);
 
-        //    // Act
-        //    var jobs = jobsController.Get().ToList();
+            // Act
+            var jobs = jobsController.Get().ToList();
 
-        //    // Assert
-        //    CollectionAssert.AreEquivalent(jobs, new List<Job>());
-        //}
+            // Assert
+            CollectionAssert.AreEquivalent(jobs, new List<Job>());
+        }
     }
 }
