@@ -18,6 +18,7 @@ namespace api.Models.LinqToSql
 	using System.Reflection;
 	using System.Linq;
 	using System.Linq.Expressions;
+	using System.Runtime.Serialization;
 	using System.ComponentModel;
 	using System;
 	
@@ -86,6 +87,7 @@ namespace api.Models.LinqToSql
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Job")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
 	public partial class Job : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -96,6 +98,8 @@ namespace api.Models.LinqToSql
 		private string _Description;
 		
 		private EntitySet<Person> _Persons;
+		
+		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -109,11 +113,11 @@ namespace api.Models.LinqToSql
 		
 		public Job()
 		{
-			this._Persons = new EntitySet<Person>(new Action<Person>(this.attach_Persons), new Action<Person>(this.detach_Persons));
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int Id
 		{
 			get
@@ -134,6 +138,7 @@ namespace api.Models.LinqToSql
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
 		public string Description
 		{
 			get
@@ -154,10 +159,16 @@ namespace api.Models.LinqToSql
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Job_Person", Storage="_Persons", ThisKey="Id", OtherKey="Job")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3, EmitDefaultValue=false)]
 		public EntitySet<Person> Persons
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._Persons.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._Persons;
 			}
 			set
@@ -197,9 +208,37 @@ namespace api.Models.LinqToSql
 			this.SendPropertyChanging();
 			entity.Job1 = null;
 		}
+		
+		private void Initialize()
+		{
+			this._Persons = new EntitySet<Person>(new Action<Person>(this.attach_Persons), new Action<Person>(this.detach_Persons));
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[global::System.Runtime.Serialization.OnSerializedAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Person")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
 	public partial class Person : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -239,11 +278,11 @@ namespace api.Models.LinqToSql
 		
 		public Person()
 		{
-			this._Job1 = default(EntityRef<Job>);
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
 		public int Id
 		{
 			get
@@ -264,6 +303,7 @@ namespace api.Models.LinqToSql
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
 		public string FirstName
 		{
 			get
@@ -284,6 +324,7 @@ namespace api.Models.LinqToSql
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
 		public string LastName
 		{
 			get
@@ -304,6 +345,7 @@ namespace api.Models.LinqToSql
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DOB", DbType="Date NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
 		public System.DateTime DOB
 		{
 			get
@@ -324,6 +366,7 @@ namespace api.Models.LinqToSql
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
 		public string Email
 		{
 			get
@@ -344,6 +387,7 @@ namespace api.Models.LinqToSql
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Job", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
 		public int Job
 		{
 			get
@@ -419,6 +463,19 @@ namespace api.Models.LinqToSql
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void Initialize()
+		{
+			this._Job1 = default(EntityRef<Job>);
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
 		}
 	}
 }
