@@ -1,26 +1,24 @@
-﻿using System;
+﻿using api.Models;
+using api.Models.LinqToSql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using api.Models.LinqToSql;
-using api.Models;
 
 namespace api.Controllers
 {
     public class PeopleController : ApiController
     {
 
-        IPeopleRepo personRepo;
 
+        IGenericRepo<Person> personRepo;
 
         public PeopleController()
         {
-            personRepo = new PeopleRepo();
+            personRepo = new genericRepo<Person>();
         }
 
-        public PeopleController(IPeopleRepo perRepo)
+        public PeopleController(IGenericRepo<Person> perRepo)
         {
             personRepo = perRepo;
         }

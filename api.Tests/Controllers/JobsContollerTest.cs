@@ -1,11 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using api.Controllers;
+﻿using api.Controllers;
 using api.Models;
 using api.Models.LinqToSql;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
-
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,7 +16,7 @@ namespace api.Tests.Controllers
         public void TestMethod_EmptyRepo()
         {
             // Arrange
-            var stubJobsRepo = MockRepository.GenerateStub<IJobsRepo>();
+            var stubJobsRepo = MockRepository.GenerateStub< IGenericRepo<Job>>();
 
             var jobsController = new JobsController(stubJobsRepo);
 
@@ -42,7 +39,7 @@ namespace api.Tests.Controllers
                 Description = description
             }};
 
-            var stubJobsRepo = MockRepository.GenerateStub<IJobsRepo>();
+            var stubJobsRepo = MockRepository.GenerateStub<IGenericRepo<Job>>();
             stubJobsRepo.Stub(x => x.getAll()).Return(jobsList);
 
             var jobsController = new JobsController(stubJobsRepo);
@@ -73,7 +70,7 @@ namespace api.Tests.Controllers
                 Description = description2
             }};
 
-            var stubJobsRepo = MockRepository.GenerateStub<IJobsRepo>();
+            var stubJobsRepo = MockRepository.GenerateStub<IGenericRepo<Job>>();
             stubJobsRepo.Stub(x => x.getAll()).Return(jobsList);
 
             var jobsController = new JobsController(stubJobsRepo);
@@ -110,7 +107,7 @@ namespace api.Tests.Controllers
                 Description = description3
             }};
 
-            var stubJobsRepo = MockRepository.GenerateStub<IJobsRepo>();
+            var stubJobsRepo = MockRepository.GenerateStub<IGenericRepo<Job>>();
             stubJobsRepo.Stub(x => x.getAll()).Return(jobsList);
 
             var jobsController = new JobsController(stubJobsRepo);

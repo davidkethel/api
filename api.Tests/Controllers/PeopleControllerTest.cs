@@ -19,7 +19,7 @@ namespace api.Tests.Controllers
         {
             // Arrange
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
 
             var personController = new PeopleController(stubPersonRepo);
 
@@ -49,7 +49,7 @@ namespace api.Tests.Controllers
                 Email = _Email ,
             }};
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(peopleList);
 
             var personController = new PeopleController(stubPersonRepo);
@@ -95,7 +95,7 @@ namespace api.Tests.Controllers
                 Email = Email2 ,
             }};
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(peopleList);
 
             var personController = new PeopleController(stubPersonRepo);
@@ -155,7 +155,7 @@ namespace api.Tests.Controllers
                 Email = Email3 ,
             }};
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(peopleList);
 
             var personController = new PeopleController(stubPersonRepo);
@@ -218,7 +218,7 @@ namespace api.Tests.Controllers
                 Email = Email3 ,
             }};
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(peopleList);
 
             var personController = new PeopleController(stubPersonRepo);
@@ -296,7 +296,7 @@ namespace api.Tests.Controllers
             }};
 
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(repoList);
 
             var personController = new PeopleController(stubPersonRepo);
@@ -367,7 +367,7 @@ namespace api.Tests.Controllers
             }};
 
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(repoList);
 
             var personController = new PeopleController(stubPersonRepo);
@@ -445,7 +445,7 @@ namespace api.Tests.Controllers
             }};
 
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(repoList);
 
             var personController = new PeopleController(stubPersonRepo);
@@ -508,7 +508,7 @@ namespace api.Tests.Controllers
             var returnList = new List<Person>() { };
 
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(repoList);
 
             var personController = new PeopleController(stubPersonRepo);
@@ -564,7 +564,7 @@ namespace api.Tests.Controllers
             }};
 
 
-            var stubPersonRepo = MockRepository.GenerateStub<IPeopleRepo>();
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
             stubPersonRepo.Stub(x => x.getAll()).Return(repoList);
 
             var personController = new PeopleController(stubPersonRepo);

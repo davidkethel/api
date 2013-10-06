@@ -7,15 +7,15 @@ namespace api.Controllers
 {
     public class JobsController : ApiController
     {
-        IJobsRepo JobsRepo;
-
+      
+        IGenericRepo<Job> JobsRepo;
 
         public JobsController()
         {
-            JobsRepo = new JobsRepo();
+            JobsRepo = new genericRepo<Job>();
         }
 
-        public JobsController(IJobsRepo jobsRepo)
+        public JobsController(IGenericRepo<Job> jobsRepo)
         {
             JobsRepo = jobsRepo;
         }
@@ -24,6 +24,7 @@ namespace api.Controllers
         // GET api/jobs
         public IEnumerable<Job> Get()
         {
+
             var allJobs = JobsRepo.getAll();
             if (allJobs != null)
             {

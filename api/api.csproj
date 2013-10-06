@@ -115,8 +115,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\IJobsRepo.cs" />
-    <Compile Include="Models\IPeopleRepo.cs" />
+    <Compile Include="Models\genericRepo.cs" />
+    <Compile Include="Models\IGenericRepo.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobRRepo.cs">
       <DependentUpon>Repo.tt</DependentUpon>
@@ -129,7 +129,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Models\JobsRepo.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonRRepo.cs">
       <DependentUpon>Repo.tt</DependentUpon>
@@ -144,7 +143,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Repo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PeopleRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
