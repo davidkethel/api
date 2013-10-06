@@ -2,12 +2,13 @@
 using api.Models.LinqToSql;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Linq;
 
 namespace api.Controllers
 {
     public class JobsController : ApiController
     {
-      
+
         IGenericRepo<Job> JobsRepo;
 
         public JobsController()
@@ -22,20 +23,26 @@ namespace api.Controllers
 
 
         // GET api/jobs
-        public IEnumerable<Job> Get()
+        public IEnumerable<Job> Get(int? id = 0)
         {
-
-            var allJobs = JobsRepo.getAll();
-            if (allJobs != null)
+            if (id == 0)
             {
-                return allJobs;
+                var allJobs = JobsRepo.getAll();
+                if (allJobs != null)
+                {
+                    return allJobs;
+                }
             }
             else
             {
-               return new List<Job>();
+                var allJobs = JobsRepo.getAll().Where(jb => jb.Id == id);
+                if (allJobs != null)
+                {
+                    return allJobs;
+                }
             }
-            
 
+            return new List<Job>();
         }
 
         //// GET api/jobs/5
