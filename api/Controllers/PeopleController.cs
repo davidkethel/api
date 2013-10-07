@@ -38,12 +38,21 @@ namespace api.Controllers
             }
         }
 
+        // GET api/jobs/1/people
+        public string getByJob(int jobId)
+        {
+            return "value";
+        }
+
+
+
         //// GET api/person/5
         //public string Get(int id)
         //{
         //    return "value";
         //}
 
+       
         //// POST api/person
         //public void Post([FromBody]string value)
         //{

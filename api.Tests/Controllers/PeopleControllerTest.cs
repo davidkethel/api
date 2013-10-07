@@ -578,5 +578,42 @@ namespace api.Tests.Controllers
 
         #endregion
 
+
+        #region byJob
+
+        [TestMethod]
+        public void TestMethod_byJob_EmptyRepo()
+        {
+            // Arrange
+            int Id = 1;
+            string FirstName = "Dave";
+            string LastName = "Kethel";
+            System.DateTime DOB = new System.DateTime(11, 11, 11);
+            string _Email = "davidkethel@gmail.com";
+
+            var peopleList = new List<Person>() {new Person
+            {
+                Id = Id,
+                FirstName = FirstName,
+                LastName = LastName,
+                DOB = DOB,
+                Email = _Email ,
+            }};
+
+            var stubPersonRepo = MockRepository.GenerateStub<IGenericRepo<Person>>();
+            stubPersonRepo.Stub(x => x.getAll()).Return(peopleList);
+
+            var personController = new PeopleController(stubPersonRepo);
+
+            // Act
+            var persons = personController.getByJob(12).ToList();
+
+            // Assert
+            CollectionAssert.AreEquivalent(persons, peopleList);
+        }
+
+
+        #endregion
+
     }
 }
