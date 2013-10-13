@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using api.Filters;
 
 namespace api.Controllers
 {
@@ -24,6 +25,7 @@ namespace api.Controllers
         }
 
         // GET api/person
+        [RequireHttps]
         public IEnumerable<Person> Get(int? olderThan = 0)
         {
             var allPeople = personRepo.getAll();
